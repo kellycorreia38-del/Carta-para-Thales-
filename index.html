@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>💌 Carta para Thales - Dia do Homem</title>
+    <title>💌 Carta para Thales</title>
     <style>
         * {
             margin: 0;
@@ -24,18 +24,6 @@
         }
 
         /* Efeito de raios de luz radiantes */
-        @keyframes radiateLight {
-            0% {
-                box-shadow: 0 0 20px rgba(76, 175, 80, 0.3);
-            }
-            50% {
-                box-shadow: 0 0 40px rgba(76, 175, 80, 0.6);
-            }
-            100% {
-                box-shadow: 0 0 20px rgba(76, 175, 80, 0.3);
-            }
-        }
-
         @keyframes rayAnimation {
             0% {
                 opacity: 0.3;
@@ -77,6 +65,117 @@
         .ray:nth-child(8) { left: 80%; width: 1px; height: 250px; animation-delay: 2.1s; }
         .ray:nth-child(9) { left: 90%; width: 2px; height: 200px; animation-delay: 2.4s; }
 
+        /* ETAPAS MISTERIOSAS */
+        .mystery-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .mystery-stage {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+            pointer-events: none;
+        }
+
+        .mystery-stage.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .stage-content {
+            text-align: center;
+            background: rgba(27, 94, 32, 0.95);
+            padding: 60px 40px;
+            border-radius: 20px;
+            border: 2px solid #4CAF50;
+            max-width: 600px;
+            color: white;
+            box-shadow: 0 0 50px rgba(76, 175, 80, 0.5);
+            animation: popIn 0.8s ease-out;
+        }
+
+        @keyframes popIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .stage-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #4CAF50;
+            text-shadow: 0 0 20px rgba(76, 175, 80, 0.5);
+        }
+
+        .stage-content p {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .stage-button {
+            background: linear-gradient(135deg, #4CAF50, #66BB6A);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(76, 175, 80, 0.5);
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .stage-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(76, 175, 80, 0.8);
+        }
+
+        .stage-button:active {
+            transform: scale(0.98);
+        }
+
+        .skip-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 1px solid white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .skip-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* CONTAINER PRINCIPAL */
         .container {
             background: rgba(255, 255, 255, 0.98);
             border-radius: 20px;
@@ -86,6 +185,13 @@
             overflow: hidden;
             animation: slideIn 0.8s ease-out, radiateLight 3s ease-in-out infinite;
             border: 2px solid #4CAF50;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .container.show {
+            opacity: 1;
+            pointer-events: auto;
         }
 
         @keyframes slideIn {
@@ -97,6 +203,16 @@
                 opacity: 1;
                 transform: translateY(0);
             }
+        }
+
+        @keyframes radiateLight {
+            0%, 100% { box-shadow: 0 0 30px rgba(76, 175, 80, 0.4), 0 20px 60px rgba(0, 0, 0, 0.5); }
+            50% { box-shadow: 0 0 50px rgba(76, 175, 80, 0.6), 0 20px 60px rgba(0, 0, 0, 0.5); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: translateX(-50%) scale(1); }
+            50% { transform: translateX(-50%) scale(1.1); }
         }
 
         .header {
@@ -120,11 +236,6 @@
             animation: pulse 3s ease-in-out infinite;
         }
 
-        @keyframes pulse {
-            0%, 100% { transform: translateX(-50%) scale(1); }
-            50% { transform: translateX(-50%) scale(1.1); }
-        }
-
         .header h1 {
             font-size: 2.5rem;
             margin-bottom: 10px;
@@ -137,20 +248,6 @@
             font-size: 1.1rem;
             opacity: 0.9;
             font-style: italic;
-            position: relative;
-            z-index: 1;
-        }
-
-        .palmeiras-badge {
-            display: inline-block;
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            margin-top: 10px;
-            font-weight: bold;
-            border: 2px solid rgba(255, 255, 255, 0.5);
             position: relative;
             z-index: 1;
         }
@@ -229,36 +326,6 @@
             text-shadow: 0 0 10px rgba(76, 175, 80, 0.2);
         }
 
-        .music-section {
-            padding: 40px 30px;
-            background: linear-gradient(135deg, #e8f5e9 0%, #f1f8e9 100%);
-            text-align: center;
-            border-top: 3px solid #1b5e20;
-        }
-
-        .music-section h3 {
-            color: #1b5e20;
-            font-size: 1.5rem;
-            margin-bottom: 30px;
-        }
-
-        .music-icon {
-            font-size: 3rem;
-            margin-bottom: 15px;
-            animation: musicPulse 1.5s ease-in-out infinite;
-        }
-
-        @keyframes musicPulse {
-            0%, 100% { transform: scale(1); }
-            25% { transform: scale(1.15); }
-            50% { transform: scale(1); }
-            75% { transform: scale(1.1); }
-        }
-
-        .spotify-embed {
-            margin: 30px 0;
-        }
-
         .divider {
             height: 2px;
             background: linear-gradient(90deg, transparent, #1b5e20, transparent);
@@ -304,11 +371,23 @@
             .content p {
                 font-size: 1rem;
             }
+
+            .stage-content {
+                padding: 40px 20px;
+            }
+
+            .stage-content h2 {
+                font-size: 1.8rem;
+            }
+
+            .stage-content p {
+                font-size: 1.1rem;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Raios de luz radiantes do Palmeiras -->
+    <!-- Raios de luz radiantes -->
     <div class="rays">
         <div class="ray"></div>
         <div class="ray"></div>
@@ -321,12 +400,62 @@
         <div class="ray"></div>
     </div>
 
+    <!-- ETAPAS MISTERIOSAS -->
+    <div class="mystery-container">
+        <button class="skip-button" onclick="skipToLetter()">Ir para carta ⏭️</button>
+
+        <!-- ETAPA 1 -->
+        <div class="mystery-stage active">
+            <div class="stage-content">
+                <h2>💌</h2>
+                <p>Você recebeu uma carta especial...</p>
+                <button class="stage-button" onclick="nextStage()">Abrir</button>
+            </div>
+        </div>
+
+        <!-- ETAPA 2 -->
+        <div class="mystery-stage">
+            <div class="stage-content">
+                <h2>🔓</h2>
+                <p>Essa é uma mensagem que vem do coração...</p>
+                <button class="stage-button" onclick="nextStage()">Continuar</button>
+            </div>
+        </div>
+
+        <!-- ETAPA 3 -->
+        <div class="mystery-stage">
+            <div class="stage-content">
+                <h2>✨</h2>
+                <p>Uma mensagem sobre alguém muito especial...</p>
+                <button class="stage-button" onclick="nextStage()">Descobrir</button>
+            </div>
+        </div>
+
+        <!-- ETAPA 4 -->
+        <div class="mystery-stage">
+            <div class="stage-content">
+                <h2>💚</h2>
+                <p>Sobre um homem de caráter e princípios...</p>
+                <button class="stage-button" onclick="nextStage()">Revelar</button>
+            </div>
+        </div>
+
+        <!-- ETAPA 5 -->
+        <div class="mystery-stage">
+            <div class="stage-content">
+                <h2>🌟</h2>
+                <p>Sobre você, Thales...</p>
+                <button class="stage-button" onclick="nextStage()">Ler Carta</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CARTA PRINCIPAL -->
     <div class="container">
         <!-- CABEÇALHO -->
         <div class="header">
             <h1>💌 Carta para Thales</h1>
             <p>Dia do Homem - Um tributo ao seu caráter</p>
-            <div class="palmeiras-badge">♻️ Palmeiras - Sempre Verde ♻️</div>
         </div>
 
         <!-- FOTO -->
@@ -391,21 +520,6 @@
             </p>
         </div>
 
-        <!-- MÚSICA -->
-        <div class="music-section">
-            <div class="music-icon">🎵</div>
-            <h3>🎶 Ouça com a Gente</h3>
-            <p style="color: #666; margin-bottom: 20px;">Uma música para acompanhar essa mensagem especial...</p>
-            
-            <div class="spotify-embed">
-                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/1BncfTJAWxrsxyT9culBrj?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-            </div>
-
-            <p style="margin-top: 20px; color: #999; font-size: 0.9rem;">
-                <em>Clique no play para ouvir a música selecionada com amor</em>
-            </p>
-        </div>
-
         <!-- RODAPÉ -->
         <div class="footer">
             <p>Com amor e admiração,</p>
@@ -415,5 +529,39 @@
             </p>
         </div>
     </div>
+
+    <script>
+        let currentStage = 0;
+        const totalStages = 5;
+
+        function nextStage() {
+            const stages = document.querySelectorAll('.mystery-stage');
+            
+            // Remove active da etapa atual
+            stages[currentStage].classList.remove('active');
+            
+            // Vai para próxima etapa
+            currentStage++;
+            
+            if (currentStage < totalStages) {
+                stages[currentStage].classList.add('active');
+            } else {
+                // Mostra a carta
+                showLetter();
+            }
+        }
+
+        function skipToLetter() {
+            showLetter();
+        }
+
+        function showLetter() {
+            const mysteryContainer = document.querySelector('.mystery-container');
+            const cartaContainer = document.querySelector('.container');
+            
+            mysteryContainer.style.display = 'none';
+            cartaContainer.classList.add('show');
+        }
+    </script>
 </body>
 </html>
