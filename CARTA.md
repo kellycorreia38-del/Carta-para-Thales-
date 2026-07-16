@@ -1,4 +1,14 @@
-# Carta para Thales
+# 💌 Carta para Thales - Dia do Homem
+
+---
+
+## 📸 Uma foto nossa
+
+![Thales e Kelly](image-1.jpg)
+
+---
+
+## 💬 A Carta
 
 Hoje é o Dia do Homem, e eu pensei bastante antes de escrever isso.
 
@@ -21,3 +31,19 @@ Obrigada por ser um amigo tão presente, tão sincero, tão atencioso e tão esp
 **Feliz Dia do Homem.**
 
 Que Deus continue moldando o seu coração, fortalecendo sua fé e conduzindo seus passos. Continue sendo exatamente esse homem íntegro que inspira as pessoas ao seu redor, porque esse é um dos maiores presentes que você pode oferecer ao mundo.
+
+---
+
+## 🎵 Ouça com a gente
+
+<iframe width="560" height="315" 
+src="https://www.youtube.com/embed/1e9B31FLT-s" 
+title="YouTube video player" 
+frameborder="0" 
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+allowfullscreen></iframe>
+
+---
+
+*Com amor e admiração,*  
+*Kelly* 💙
